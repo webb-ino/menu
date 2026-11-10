@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nature’s Cafe, Mopka: Menu</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,700;1,500&display=swap">
+<style>
+:root{--bg:#f3f6ee;--card:#fff;--ink:#17211a;--mut:#5f6c61;--line:#dfe6d6;--g:#24492f;--on:#fff;--gl:#e1ecd6;--amb:#b97a10;--red:#a8382a;--grn:#2e7d32;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#111912;--card:#1a251c;--ink:#eaf0e3;--mut:#9fae9f;--line:#2a392d;--g:#7fb98a;--on:#0e1a10;--gl:#243a2a;--amb:#e0a33a;--red:#e0705f;--grn:#6fbf73}}
+:root[data-theme="dark"]{--bg:#111912;--card:#1a251c;--ink:#eaf0e3;--mut:#9fae9f;--line:#2a392d;--g:#7fb98a;--on:#0e1a10;--gl:#243a2a;--amb:#e0a33a;--red:#e0705f;--grn:#6fbf73}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 120px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--g);z-index:10}
+.wrap{max-width:640px;margin:0 auto;padding-bottom:90px}
+.top{background:var(--g);color:var(--on);padding:16px 16px 14px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+h1{font:700 24px/1.1 Fraunces,Georgia,serif;margin:0}
+.top p{margin:2px 0 0;font-size:13px;opacity:.85}
+button{font:inherit;cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;padding:7px 14px}
+button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--amb);outline-offset:2px}
+.pri{background:var(--g);color:var(--on);border-color:var(--g);font-weight:600}
+.top button{background:transparent;color:var(--on);border-color:currentColor}
+.sticky{position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);z-index:5;padding:10px 16px 6px;border-bottom:1px solid var(--line)}
+input,textarea{font:inherit;width:100%;box-sizing:border-box;padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink)}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:8px 0 4px;scrollbar-width:none}
+.chips button{white-space:nowrap;border-radius:999px;padding:5px 13px;font-size:14px}
+.chips button.on{background:var(--gl);border-color:var(--g);font-weight:600}
+h2{font:700 21px/1.2 Fraunces,Georgia,serif;margin:22px 16px 6px;color:var(--g)}
+.it{display:flex;gap:10px;align-items:center;padding:11px 16px;border-bottom:1px solid var(--line)}
+.dot{width:14px;height:14px;border:2px solid var(--grn);border-radius:3px;flex:none;position:relative}
+.dot::after{content:"";position:absolute;inset:2px;border-radius:50%;background:var(--grn)}
+.dot.n{border-color:var(--red)}.dot.n::after{background:var(--red)}.dot.x{visibility:hidden}
+.nm{flex:1}.pr{color:var(--mut);font-size:14px}
+.qty{display:flex;align-items:center;gap:10px;border:1px solid var(--g);border-radius:8px;padding:2px 4px}
+.qty button{border:0;background:none;font-size:18px;padding:2px 10px}
+.bar{position:fixed;left:0;right:0;bottom:env(safe-area-inset-bottom,0px);padding:10px 16px;z-index:6}
+.bar button{width:100%;display:flex;justify-content:space-between;padding:13px 16px;border-radius:10px}
+.sh{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:20;display:flex;align-items:flex-end;justify-content:center}
+.sh>div{background:var(--bg);width:100%;max-width:640px;max-height:88%;overflow:auto;border-radius:16px 16px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom,0px))}
+.row{display:flex;justify-content:space-between;gap:10px;padding:5px 0}
+label{display:block;font-size:13px;color:var(--mut);margin:12px 0 4px}
+.st{display:flex;gap:6px;margin:14px 0}.st span{flex:1;text-align:center;padding:8px 2px;border-radius:8px;background:var(--card);border:1px solid var(--line);font-size:13px;color:var(--mut)}
+.st span.on{background:var(--g);color:var(--on);border-color:var(--g);font-weight:600}
+.oc{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;margin:10px 16px}
+.oc.new{border:2px solid var(--amb)}
+.tag{font-size:12px;padding:2px 9px;border-radius:999px;background:var(--gl)}
+.note{font-size:13px;color:var(--mut);margin:12px 16px}
+a{color:var(--g)}
+.qg{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;padding:0 16px 16px}
+.qc{background:#fff;color:#000;border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;word-break:break-all}
+.qc b{font:700 18px Fraunces,Georgia,serif}.qc .q{display:flex;justify-content:center;margin:8px 0}.qc small{color:#444}
+@media print{.top,.sticky,.noprint{display:none!important}body::before{display:none}.qc{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+const D=`Beverages
+Mineral Water|0
+Soft Drink / Masala|40
+Butter Milk|60
+Red Bull|180
+Coolbarg|150
+Mocktails
+Virgin Mojito|120
+Watermelon Mojito|120
+Strawberry Mojito|120
+Kiwi Cooler|130
+Green Apple Cooler|90
+Hibiscus Cooler|90
+Berry Punch|190
+Blueberry Cooler|90
+No Tequila (Shots)|220
+Pina Colada|169
+Chilli Guava (Shots)|220
+Sunset Berry|140
+Tropical Tiger|160
+Black Panther|160
+Soups
+Manchow Soup|120|v
+Hot &amp; Sour Soup|110|v
+Lemon Coriander Soup|110|v
+Chicken Manchow Soup|140|n
+Chicken Hot &amp; Sour Soup|130|n
+Chicken Lemon Coriander Soup|130|n
+Fries
+French Fries|60
+Peri Peri Fries|80
+Schezwan Fries|90
+Cheese Loaded Fries|110
+Pasta
+White Sauce Pasta|180|v
+Red Sauce Pasta|160|v
+Pink Sauce Pasta|180|v
+Chicken White Sauce Pasta|210|n
+Chicken Red Sauce Pasta|190|n
+Chicken Pink Sauce Pasta|210|n
+Chinese Appetizers
+Chinese Bhel|120|v
+Crispy Corn|160|v
+Baby Corn Chilly|180|v
+Dragon Paneer|200|v
+Garlic Paneer|200|v
+Paneer Chilli|180|v
+Paneer 65|180|v
+Mushroom Salt &amp; Pepper|180|v
+Honey Chilly Potato|160|v
+Veg Lollipop|180|v
+Chicken Pops|180|n
+Chicken Roast|160|n
+Chicken Cornflakes|180|n
+Grilled Chicken|220|n
+Chicken Pakoda|180|n
+Rice
+Veg Fried Rice|120|v
+Chilli Garlic Fried Rice|130|v
+Burn Garlic Rice|130|v
+Schezwan Fried Rice|130|v
+Triple Schezwan Fried Rice|180|v
+Chicken Fried Rice|150|n
+Chicken Garlic Fried Rice|150|n
+Chicken Burn Garlic Rice|150|n
+Chicken Schezwan Fried Rice|160|n
+Chicken Triple Schezwan Fried Rice|220|n
+Noodles
+Veg Noodles|110|v
+Chilli Garlic Noodles|120|v
+Burn Garlic Noodles|130|v
+Schezwan Fried Noodles|130|v
+Chicken Noodles|150|n
+Chicken Chilli Garlic Noodles|150|n
+Chicken Burn Garlic Noodles|150|n
+Chicken Schezwan Fried Noodles|150|n
+Gravy Favourites
+Paneer Chilli Gravy|220|v
+Paneer Hot Garlic Sauce|220|v
+Paneer Manchurian Gravy|210|v
+Chicken Chilli Gravy|280|n
+Chicken Hot Garlic Sauce|280|n
+Chicken Manchurian Gravy|280|n
+Desserts
+Ice Cream|60
+Brownie with Ice-Cream|110
+Hot Sizzling Brownie|140
+Gulab Jamun|40
+Fried Icecream|110`;
+const cats=[],all={};
+D.split('\n').forEach(l=>{if(l.includes('|')){const[n,p,t]=l.split('|'),c=cats[cats.length-1],o={id:cats.length-1+'_'+c.items.length,n,p:+p,t:t||''};c.items.push(o);all[o.id]=o}else cats.push({n:l,items:[]})});
+
+let mem=[],cart={},fl='all',q='',me=null,tbl='',view='',fromQr=false,stab='orders',ntab=10,base='https://claude.ai/artifact/Ua82MKooJvMbKU9qzmQ9ZN';
+const ld=()=>{try{return JSON.parse(localStorage.getItem('nc_orders')||'[]')}catch(e){return mem}};
+const sv=o=>{mem=o;try{localStorage.setItem('nc_orders',JSON.stringify(o))}catch(e){}};
+const $=s=>document.querySelector(s);
+const rs=n=>n?'₹'+n:'MRP';
+const total=()=>Object.keys(cart).reduce((s,k)=>s+all[k].p*cart[k],0);
+const count=()=>Object.keys(cart).reduce((s,k)=>s+cart[k],0);
+const STEPS=['New','Preparing','Ready','Served'];
+
+function render(){
+  clearInterval(window.tick);
+  const m=location.hash.match(/^#table-(\d+)$/);if(m){tbl=m[1];fromQr=true}
+  view=location.hash==='#staff'?'staff':'menu';
+  view==='staff'?staff():menu();
+}
+window.addEventListener('hashchange',render);
+
+/* ---------- Customer menu ---------- */
+function menu(){
+  $('#app').innerHTML=`<div class="top"><div><h1>Nature’s Cafe</h1><p>Mopka · ${fromQr?'Table '+tbl:'scan, order, enjoy'}</p></div><button id="ob">My order</button></div>
+  <div class="sticky"><input id="q" type="search" placeholder="Search the menu" aria-label="Search the menu" value="${q}">
+  <div class="chips" id="f"></div><div class="chips" id="cn"></div></div>
+  <div id="list"></div><p class="note">Demo with sample ordering. Orders stay on this device. The staff screen is at the address ending <b>#staff</b>.</p><div id="bar"></div><div id="sh"></div>`;
+  $('#q').oninput=e=>{q=e.target.value;list()};
+  $('#f').innerHTML=[['all','All'],['v','Veg'],['n','Non-veg']].map(([k,t])=>`<button data-f="${k}" class="${fl===k?'on':''}">${t}</button>`).join('');
+  $('#f').onclick=e=>{const k=e.target.dataset.f;if(k){fl=k;menu()}};
+  $('#cn').innerHTML=cats.map((c,i)=>`<button data-c="${i}">${c.n}</button>`).join('');
+  $('#cn').onclick=e=>{const i=e.target.dataset.c;if(i!=null){const h=document.getElementById('c'+i);h&&h.scrollIntoView({behavior:'smooth'})}};
+  $('#ob').onclick=status;
+  $('#list').onclick=e=>{const b=e.target.closest('[data-a]');if(!b)return;const id=b.dataset.id,a=b.dataset.a;cart[id]=Math.max(0,(cart[id]||0)+(a==='+'?1:-1));if(!cart[id])delete cart[id];list();bar()};
+  list();bar();
+}
+function list(){
+  const s=q.trim().toLowerCase();let h='';
+  cats.forEach((c,i)=>{
+    const its=c.items.filter(o=>o.n.toLowerCase().includes(s)&&(fl==='all'||(fl==='v'&&o.t!=='n')||(fl==='n'&&o.t==='n')));
+    if(!its.length)return;
+    h+=`<h2 id="c${i}">${c.n}</h2>`+its.map(o=>`<div class="it"><span class="dot ${o.t||'x'}" title="${o.t==='v'?'Veg':o.t==='n'?'Non-veg':''}"></span><span class="nm">${o.n}</span><span class="pr">${rs(o.p)}</span>${cart[o.id]?`<span class="qty"><button data-a="-" data-id="${o.id}" aria-label="Remove one">−</button><b>${cart[o.id]}</b><button data-a="+" data-id="${o.id}" aria-label="Add one">+</button></span>`:`<button data-a="+" data-id="${o.id}">Add</button>`}</div>`).join('');
+  });
+  $('#list').innerHTML=h||'<p class="note">Nothing matches that search. Try a different word.</p>';
+}
+function bar(){
+  const n=count();
+  $('#bar').innerHTML=n?`<div class="bar"><button class="pri" id="vc"><span>${n} item${n>1?'s':''}</span><span>View cart · ${rs(total())}</span></button></div>`:'';
+  if(n)$('#vc').onclick=cartSheet;
+}
+function sheet(html){$('#sh').innerHTML=`<div class="sh" id="bg"><div>${html}</div></div>`;$('#bg').onclick=e=>{if(e.target.id==='bg'){clearInterval(window.tick);$('#sh').innerHTML=''}}}
+function cartSheet(){
+  const ks=Object.keys(cart);
+  sheet(`<h2 style="margin:0 0 8px">Your cart</h2>${ks.map(k=>`<div class="row"><span>${cart[k]} × ${all[k].n}</span><span>${rs(all[k].p*cart[k])}</span></div>`).join('')}
+  <div class="row"><b>Total</b><b>${rs(total())}</b></div>
+  ${fromQr?`<p class="pr" style="margin:12px 0 0">Ordering for <b>Table ${tbl}</b> · <a href="#" id="chg">Not your table?</a></p><input id="tb" type="hidden" value="${tbl}">`:`<label for="tb">Table number</label><input id="tb" inputmode="numeric" placeholder="For example, 5" value="${tbl}">`}
+  <label for="nm2">Your name (optional)</label><input id="nm2">
+  <label for="nt">Note for the kitchen (optional)</label><textarea id="nt" rows="2" placeholder="Less spicy, no onion…"></textarea>
+  <p id="er" style="color:var(--red);margin:8px 0 0"></p>
+  <button class="pri" id="po" style="width:100%;margin-top:12px;padding:12px">Place order</button><p class="note" style="margin:8px 0 0">Pay at the counter after your meal.</p>`);
+  const ch=$('#chg');if(ch)ch.onclick=e=>{e.preventDefault();fromQr=false;cartSheet()};
+  $('#po').onclick=()=>{
+    tbl=$('#tb').value.trim();if(!tbl){$('#er').textContent='Enter your table number to place the order.';return}
+    const os=ld(),o={id:'#'+(101+os.length),table:tbl,name:$('#nm2').value.trim(),note:$('#nt').value.trim(),items:Object.keys(cart).map(k=>({n:all[k].n,q:cart[k]})),total:total(),status:'New',t:Date.now()};
+    os.push(o);sv(os);me=o.id;cart={};menu();status();
+  };
+}
+function status(){
+  const draw=()=>{
+    const o=ld().find(x=>x.id===me);
+    if(!o){sheet('<h2 style="margin:0 0 8px">My order</h2><p>You have not placed an order yet. Add items from the menu to get started.</p>');return}
+    const i=STEPS.indexOf(o.status);
+    sheet(`<h2 style="margin:0">Order ${o.id}</h2><p class="pr" style="margin:2px 0">Table ${o.table} · ${rs(o.total)}</p>
+    <div class="st">${STEPS.map((s,j)=>`<span class="${j<=i?'on':''}">${s==='New'?'Received':s}</span>`).join('')}</div>
+    ${o.items.map(x=>`<div class="row"><span>${x.q} × ${x.n}</span></div>`).join('')}
+    <p class="note" style="margin:12px 0 0">${i===2?'Your order is ready.':i===3?'Enjoy your meal!':'This updates by itself.'}</p>`);
+  };
+  draw();clearInterval(window.tick);window.tick=setInterval(()=>{if($('#sh')&&$('#sh').innerHTML)draw()},2500);
+}
+
+/* ---------- Staff screen (demo) ---------- */
+function beep(){try{const a=new AudioContext(),o=a.createOscillator();o.connect(a.destination);o.frequency.value=880;o.start();o.stop(a.currentTime+.3)}catch(e){}}
+function staff(){stab==='qr'?qrs():ords()}
+function tabs(){return `<div class="sticky noprint" style="display:flex;gap:8px"><button class="${stab==='orders'?'pri':''}" data-tab="orders">Orders</button><button class="${stab==='qr'?'pri':''}" data-tab="qr">Table QR codes</button></div>`}
+function wireTabs(){document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>{stab=b.dataset.tab;clearInterval(window.tick);staff()})}
+function qrs(){
+  clearInterval(window.tick);
+  $('#app').innerHTML=`<div class="top"><div><h1>Table QR codes</h1><p>Staff screen (demo)</p></div><a href="#" style="color:var(--on)">Customer menu</a></div>${tabs()}
+  <div class="noprint" style="padding:12px 16px"><label for="bu" style="margin-top:0">Menu link (the page customers open)</label><input id="bu" value="${base}">
+  <label for="nt">Number of tables</label><input id="nt" type="number" min="1" max="60" value="${ntab}">
+  <div style="display:flex;gap:8px;margin-top:12px"><button class="pri" id="gq">Update QR codes</button><button id="pq">Print all</button></div>
+  <p class="pr" style="margin:8px 0 0">Each code opens the menu with that table already selected. Print them and place one on each table.</p></div><div class="qg" id="qg"></div>`;
+  wireTabs();
+  const gen=()=>{
+    base=$('#bu').value.trim().replace(/#.*$/,'');ntab=Math.min(60,Math.max(1,+$('#nt').value||1));
+    const g=$('#qg');g.innerHTML='';
+    for(let i=1;i<=ntab;i++){
+      const c=document.createElement('div'),link=base+'#table-'+i;c.className='qc';
+      c.innerHTML='<b>Table '+i+'</b><div class="q"></div><small>Scan to order</small>';g.appendChild(c);
+      try{new QRCode(c.querySelector('.q'),{text:link,width:128,height:128})}catch(e){c.querySelector('.q').textContent=link}
+    }
+  };
+  $('#gq').onclick=gen;$('#pq').onclick=()=>window.print();gen();
+}
+function ords(){
+  let seen=ld().length;
+  const draw=()=>{
+    const os=ld().slice().reverse(),act=os.filter(o=>o.status!=='Served');
+    $('#app').innerHTML=`<div class="top"><div><h1>Orders</h1><p>Staff screen (demo) · ${act.length} active</p></div><a href="#" style="color:var(--on)">Customer menu</a></div>${tabs()}
+    ${os.length?os.map(o=>`<div class="oc ${o.status==='New'?'new':''}"><div class="row"><b>Table ${o.table} · ${o.id}</b><span class="tag">${o.status==='New'?'New':o.status}</span></div>
+    ${o.items.map(x=>`<div>${x.q} × ${x.n}</div>`).join('')}${o.note?`<p class="pr" style="margin:6px 0 0">Note: ${o.note}</p>`:''}
+    <div class="row"><span class="pr">${o.name||'Guest'} · ${rs(o.total)}</span>${o.status!=='Served'?`<button class="pri" data-id="${o.id}">${['Start preparing','Mark ready','Mark served'][STEPS.indexOf(o.status)]}</button>`:''}</div></div>`).join(''):'<p class="note">No orders yet. New orders will appear here with a sound.</p>'}
+    <p class="note"><button id="clr">Clear all orders</button></p>`;
+    wireTabs();
+    $('#clr').onclick=()=>{sv([]);seen=0;draw()};
+    document.querySelectorAll('[data-id]').forEach(b=>b.onclick=()=>{const all2=ld(),o=all2.find(x=>x.id===b.dataset.id);o.status=STEPS[STEPS.indexOf(o.status)+1];sv(all2);draw()});
+  };
+  draw();
+  window.tick=setInterval(()=>{const n=ld().length;if(n>seen)beep();if(n!==seen||true){seen=n;draw()}},2500);
+}
+render();
+</script>
+</body>
+</html>
