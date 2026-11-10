@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Staff</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,700;1,500&display=swap">
+<style>
+:root{--bg:#f3f6ee;--card:#fff;--ink:#17211a;--mut:#5f6c61;--line:#dfe6d6;--g:#24492f;--on:#fff;--gl:#e1ecd6;--amb:#b97a10;--red:#a8382a;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root{--bg:#111912;--card:#1a251c;--ink:#eaf0e3;--mut:#9fae9f;--line:#2a392d;--g:#7fb98a;--on:#0e1a10;--gl:#243a2a;--amb:#e0a33a;--red:#e0705f}}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--g);z-index:10}
+.wrap{max-width:900px;margin:0 auto;padding-bottom:40px}
+.top{background:var(--g);color:var(--on);padding:16px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+h1{font:700 19px/1.1 Fraunces,Georgia,serif;margin:0;letter-spacing:.09em;text-transform:uppercase}
+.brand{display:flex;align-items:center;gap:12px}.top p{margin:2px 0 0;font-size:12px;opacity:.85;letter-spacing:.08em;text-transform:uppercase}
+button{font:inherit;cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;padding:7px 14px}
+button:focus-visible,input:focus-visible{outline:2px solid var(--amb);outline-offset:2px}
+.pri{background:var(--g);color:var(--on);border-color:var(--g);font-weight:600}
+.top button{background:transparent;color:var(--on);border-color:currentColor}
+input{font:inherit;width:100%;box-sizing:border-box;padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink)}
+label{display:block;font-size:13px;color:var(--mut);margin:12px 0 4px}
+.tabs{display:flex;gap:8px;padding:10px 16px;border-bottom:1px solid var(--line)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px;padding:12px 16px}
+.oc{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px}
+.oc.new{border:2px solid var(--amb)}.oc.done{opacity:.55}
+.row{display:flex;justify-content:space-between;gap:10px;padding:4px 0;align-items:center}
+.tag{font-size:12px;padding:2px 9px;border-radius:999px;background:var(--gl)}
+.pr{color:var(--mut);font-size:13px}
+.note{font-size:13px;color:var(--mut);margin:12px 16px}
+.qg{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;padding:0 16px 16px}
+.qc{background:#fff;color:#000;border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;word-break:break-all}
+.qc b{font:700 18px Fraunces,Georgia,serif}.qc .q{display:flex;justify-content:center;margin:8px 0}.qc small{color:#444}
+@media print{.top,.tabs,.noprint{display:none!important}body::before{display:none}.qc{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script type="module">
+import{initializeApp}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import{getFirestore,collection,query,orderBy,limit,onSnapshot,doc,updateDoc}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import{getAuth,signInWithEmailAndPassword,signOut,onAuthStateChanged}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+const app=initializeApp({
+  apiKey:"AIzaSyDBt-TV4u8jJClK9wFbSfFymgQAqiCJeGE",
+  authDomain:"cafe-menu-289b7.firebaseapp.com",
+  projectId:"cafe-menu-289b7",
+  storageBucket:"cafe-menu-289b7.firebasestorage.app",
+  messagingSenderId:"675538504432",
+  appId:"1:675538504432:web:36bae4b397dd7999cd9035"
+});
+const db=getFirestore(app),auth=getAuth(app);
+const $=s=>document.querySelector(s);
+const E=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const STEPS=['New','Preparing','Ready','Served'],BTN=['Start preparing','Mark ready','Mark served'];
+const LOGO='<svg width="40" height="40" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 38A19 19 0 0 1 43 38"/><path d="M24 11c-8 4-9 14 0 22 9-8 8-18 0-22z" fill="currentColor" stroke="none"/><path d="M24 17v16" stroke="var(--g)" stroke-width="1.4"/></svg>';
+const rs=n=>n?'₹'+n:'MRP';
+let tab='orders',orders=[],off=null,first=true,ntab=10,base=location.origin+location.pathname.replace(/staff\.html$/,'');
+
+function beep(){try{const a=new AudioContext(),o=a.createOscillator();o.connect(a.destination);o.frequency.value=880;o.start();o.stop(a.currentTime+.3)}catch(e){}}
+
+onAuthStateChanged(auth,u=>{if(off){off();off=null}u?dash():login()});
+
+function login(){
+  $('#app').innerHTML=`<div class="top"><div class="brand">${LOGO}<div><h1>Nature’s Cafe</h1><p>Staff sign in</p></div></div></div>
+  <div style="padding:20px 16px;max-width:380px"><label for="em">Email</label><input id="em" type="email" autocomplete="username">
+  <label for="pw">Password</label><input id="pw" type="password" autocomplete="current-password">
+  <p id="er" style="color:var(--red);min-height:1.4em"></p><button class="pri" id="si" style="width:100%;padding:12px">Sign in</button></div>`;
+  const go=async()=>{try{await signInWithEmailAndPassword(auth,$('#em').value.trim(),$('#pw').value)}catch(e){$('#er').textContent='Wrong email or password.'}};
+  $('#si').onclick=go;$('#pw').onkeydown=e=>{if(e.key==='Enter')go()};
+}
+function dash(){
+  first=true;orders=[];
+  off=onSnapshot(query(collection(db,'orders'),orderBy('createdAt','desc'),limit(100)),s=>{
+    orders=s.docs.map(d=>({id:d.id,...d.data()}));
+    if(!first)s.docChanges().forEach(c=>{if(c.type==='added')beep()});
+    first=false;if(tab==='orders')draw();
+  },()=>{orders=null;if(tab==='orders')draw()});
+  draw();
+}
+function hdr(sub){
+  return `<div class="top"><div class="brand">${LOGO}<div><h1>Nature’s Cafe</h1><p>${sub}</p></div></div><button id="so">Sign out</button></div>
+  <div class="tabs"><button class="${tab==='orders'?'pri':''}" data-tab="orders">Orders</button><button class="${tab==='qr'?'pri':''}" data-tab="qr">Table QR codes</button></div>`;
+}
+function wire(){
+  $('#so').onclick=()=>signOut(auth);
+  document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>{tab=b.dataset.tab;draw()});
+}
+function draw(){tab==='orders'?ordersView():qrView()}
+
+function ordersView(){
+  const act=(orders||[]).filter(o=>o.status!=='Served').length;
+  $('#app').innerHTML=hdr(orders===null?'No access':act+' active')+(orders===null
+    ?'<p class="note">Could not load orders. Check your internet connection, and make sure this email is listed in firestore.rules.</p>'
+    :orders.length?'<div class="grid">'+orders.map(o=>{
+      const i=STEPS.indexOf(o.status),t=o.createdAt&&o.createdAt.toDate?o.createdAt.toDate().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}):'';
+      return `<div class="oc ${i===0?'new':i===3?'done':''}"><div class="row"><b>Table ${E(o.table)} · ${E(o.id.slice(-4).toUpperCase())}</b><span class="tag">${i===0?'New':E(o.status)}</span></div>
+      ${(o.items||[]).map(x=>`<div>${E(x.q)} × ${E(x.n)}</div>`).join('')}${o.note?`<p class="pr" style="margin:6px 0 0">Note: ${E(o.note)}</p>`:''}
+      <div class="row" style="margin-top:6px"><span class="pr">${E(o.name)||'Guest'} · ${rs(o.total)} · ${t}</span>${i<3?`<button class="pri" data-id="${E(o.id)}" data-n="${STEPS[i+1]}">${BTN[i]}</button>`:''}</div></div>`}).join('')+'</div>'
+    :'<p class="note">No orders yet. New orders will appear here with a sound.</p>');
+  wire();
+  document.querySelectorAll('[data-id]').forEach(b=>b.onclick=()=>updateDoc(doc(db,'orders',b.dataset.id),{status:b.dataset.n}));
+}
+function qrView(){
+  $('#app').innerHTML=hdr('Table QR codes')+`<div class="noprint" style="padding:12px 16px"><label for="bu" style="margin-top:0">Menu link (the page customers open)</label><input id="bu" value="${E(base)}">
+  <label for="nt">Number of tables</label><input id="nt" type="number" min="1" max="60" value="${ntab}">
+  <div style="display:flex;gap:8px;margin-top:12px"><button class="pri" id="gq">Update QR codes</button><button id="pq">Print all</button></div>
+  <p class="pr" style="margin:8px 0 0">Each code opens the menu with that table already selected. Print them and place one on each table.</p></div><div class="qg" id="qg"></div>`;
+  wire();
+  const gen=()=>{
+    base=$('#bu').value.trim();ntab=Math.min(60,Math.max(1,+$('#nt').value||1));
+    const g=$('#qg');g.innerHTML='';
+    for(let i=1;i<=ntab;i++){
+      const c=document.createElement('div'),link=base+'?table='+i;c.className='qc';
+      c.innerHTML='<b>Table '+i+'</b><div class="q"></div><small>Scan to order</small>';g.appendChild(c);
+      try{new QRCode(c.querySelector('.q'),{text:link,width:128,height:128})}catch(e){c.querySelector('.q').textContent=link}
+    }
+  };
+  $('#gq').onclick=gen;$('#pq').onclick=()=>window.print();gen();
+}
+</script>
+</body>
+</html>
